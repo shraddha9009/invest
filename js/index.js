@@ -1,0 +1,212 @@
+//add event listeners to html elements
+document.querySelector("#register-btn").addEventListener('click',addRows);
+document.querySelector('#FirstName').addEventListener('keypress',getData);
+document.querySelector('#LastName').addEventListener('keypress',getData);
+document.querySelector('#exampleInputEmail1').addEventListener('keypress',getData);
+document.querySelector('#exampleInputEmail1').addEventListener('focusout',ValidateEmail);
+document.querySelector('#mobileNumber').addEventListener('keypress',getData);
+document.querySelector("#register").addEventListener('click',addBackground);
+document.querySelector("#showList").addEventListener('click',addBackground);
+document.querySelector("#aboutUs").addEventListener('click',addBackground);
+document.querySelector("#FirstName").addEventListener('keydown',validateName);
+document.querySelector("#LastName").addEventListener('keydown',validateName);
+
+//create array for email and mobile number
+let emailArr = [];
+let numberArr = [];
+let x = 0;  //initialize counter variable for array
+let flag = 0; //initialize flag variable
+let emailFlag = 1; 
+
+function addBackground(){
+  document.body.style.background = "gray";
+}
+
+//function to display respecitve pages
+function disp(e) {
+    var sec1=document.getElementById("home_page");
+    var sec2=document.getElementById("registerBlock");
+    var sec3=document.getElementById("showListBlock");
+    var sec4=document.getElementById("aboutDiv");
+    console.log(e);
+      if (e=='home') 
+      {
+        sec1.style.display="block";
+        sec2.style.display="none";  
+        sec3.style.display="none";
+        sec4.style.display="none";
+      }
+      else if(e == 'register')
+      {
+          sec2.style.display="block";
+          sec1.style.display="none";  
+          sec3.style.display="none";
+          sec4.style.display="none";
+      }
+      else if (e == 'aboutUs')
+      {
+        sec4.style.display="block";
+          sec1.style.display="none";
+          sec3.style.display="none";  
+          sec2.style.display="none";
+          }
+      else{
+          sec3.style.display="block";
+          sec1.style.display="none";  
+          sec2.style.display="none";
+          sec4.style.display="none";
+      }
+}
+
+function getData(e){
+  if (e.keyCode != 13 || fName.length<3 && number.length!=10 && email.length<13 )
+        return;
+}
+
+
+function validateName(e){
+
+if (e.ctrlKey || e.altKey) {
+    
+      e.preventDefault();
+      
+    } else {
+    
+      var key = e.keyCode;
+      
+      if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+      
+        e.preventDefault();
+        
+      }
+
+    }
+}
+
+
+
+
+
+//function to add rows in the table
+function addRows(){
+     //initialize email flag variable
+
+    //get user entered data
+    var fName = document.getElementById('FirstName').value;
+    var lName = document.getElementById('LastName').value;
+    var email = document.getElementById('exampleInputEmail1').value;
+    var number = document.getElementById('mobileNumber').value;
+
+    var table = document.getElementById("registrantList");  //access the table
+    
+    if(emailArr.length>0)    
+      {
+        for(var i=0; i<emailArr.length; i++)  //condition to check whether email is registered or not.
+        {
+          if(emailArr[i] == email)
+          {
+            alert('User Already Registered...!!!');
+            document.getElementById('FirstName').value = '';
+            document.getElementById('LastName').value = '';
+            document.getElementById('exampleInputEmail1').value = '';
+            document.getElementById('mobileNumber').value = '';
+            emailFlag = 0;
+          }
+        }
+      }
+
+      if(numberArr.length>0)    
+      {
+        for(var i=0; i<numberArr.length; i++)  //condition to check whether email is registered or not.
+        {
+          if(numberArr[i] == number)
+          {
+            alert('User Already Registered...!!!');
+            document.getElementById('FirstName').value = '';
+            document.getElementById('LastName').value = '';
+            document.getElementById('exampleInputEmail1').value = '';
+            document.getElementById('mobileNumber').value = '';
+            emailFlag = 0;
+          }
+        }
+      }
+
+    if(fName.length<3)  //condition to check whether first name is greater than 3 characters.
+      alert("Enter Valid First Name...!!!");
+    else if (lName.length<3) //condition to check whether last name is greater than 3 characters.
+    {
+      alert("Enter Valid Last Name...!!!");
+    }
+    else if (number.length!=10)   //condition to check mobile number is of 10 digits only
+    {
+      alert("Enter Valid  number..!!!");
+    }
+    else if (email.length<13) //condition to check email.(considered abc@gmail.com for 13 digits)
+    {
+      alert("Enter Valid Email...!!!");
+    }
+    else if (emailFlag == 1) {
+      insertRowFun();
+    } //if each condition is satisfied then insert row to table
+      
+}
+
+
+function insertRowFun()
+{
+
+    //get user entered data
+    var fName = document.getElementById('FirstName').value;
+    var lName = document.getElementById('LastName').value;
+    var email = document.getElementById('exampleInputEmail1').value;
+    var number = document.getElementById('mobileNumber').value;
+
+    var table = document.getElementById("registrantList");  //access the table
+
+    document.getElementById('noData').style.display = 'none';  //hide no data lable
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    cell1.innerHTML = fName;
+    cell2.innerHTML = lName;
+    cell3.innerHTML = email;
+    emailArr[x] = email;  //add entered email to array.
+    cell4.innerHTML = number;
+    numberArr[x] = number;  //add entered mobile number to array.
+    
+    x++;    //increment the counter
+
+    table.appendChild(row);
+    alert("Registered Successfully!!!");
+    flag = 1;   //set flag variable
+    
+//if data added to table then reset the form
+    if(flag == 1){
+      document.getElementById('FirstName').value = '';
+      document.getElementById('LastName').value = '';
+      document.getElementById('exampleInputEmail1').value = '';
+      document.getElementById('mobileNumber').value = '';
+  }
+}
+
+//validate email address. Reference email - abc@gmail.com
+function ValidateEmail() {
+      var email = document.getElementById("exampleInputEmail1").value;
+      var lblError = document.getElementById("lblError");
+      var expr = /^[ [\w\.=-]+@([a-zA-Z]{2,4})+\.([a-zA-Z]{2,4})(\]?){2,3}$/;
+      if (!expr.test(email)) {
+        alert("Invalid email address.");
+        document.getElementById("exampleInputEmail1").value = '';
+  }
+}
+
+function validate(evt) {
+  var key = evt.keyCode;
+  key = String.fromCharCode(key);
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    evt.returnValue = false;
+  }
+}
