@@ -1,120 +1,180 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Berkshire+Swash&family=Josefin+Sans&family=Montserrat+Subrayada:wght@700&family=Notable&family=Piedra&display=swap');
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>investors</title>
-  </head>
+*{
+	list-style: none;
+	text-decoration: none;
+}
 
-<body>
-<div class="navbar">
-	<ul>
-		<li><a id="home" onclick="disp(this.id)">Home</a></li>
-		<li><a id="aboutUs" onclick="disp(this.id)">About Us</a></li>
-		<li><a id="register" onclick="disp(this.id)">Registration</a></li>
-		<li><a id="showList" onclick="disp(this.id)">Show Registrations</a></li>
-	</ul>
-</div>
+.container {
+	width: 100; 
+	margin: 2px 2px 2px 2px;
+}
 
-<div class="section" id="home_page">
-<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="images/invest.jpg" width="80%" height="550" class="d-block w-100" alt="...">
-      <h2 id="invest-head">7 ways to impress your potential investors</h2>
-      <p id="concert-date">15th August 2020</p>
-      <div class="carousel-caption d-none d-md-block">
-      	<h3>Let music flow in your heart and enrich your soul. ...</h3>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="images/invest1.jpg" width="80%" height="550" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-      	<h3>Arijit Singh</h3>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="images/concert2.jpg" width="80%" height="550" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-      	<h3>Atif Aslam</h3>
-      </div>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-</div>
+#concert-head{
+	position: absolute;
+	top: 30%; 
+	left: 25%; 
+	font-size: 8vw;
+	font-family: 'Allura';
+	color: #fb2274;
+	border-bottom: 2px dotted;
+	font-weight: bold;
+}
 
-      
+#concert-date{
+	position: absolute;
+	top: 55%; 
+	left: 38%; 
+	font-size: 2vw;
+	font-family: 'Notable';
+	background-color: white;
+	color: #fb2274;
+	border: 2px solid;
+	font-weight: bold;
+}
 
-    <div class="section" id="registerBlock">
-	<form>
-		<div class="form-group">
-  			<label for="FullName">Fisrt Name</label>
-  			<input type="text" class="form-control" id="FirstName">
-  		</div>
+.navbar {
+	justify-content: center;
+	position: relative;
+	background-color: black; 
+}
 
-  		<div class="form-group">
-  			<label for="FullName">Last Name</label>
-  			<input type="text" class="form-control" id="LastName">
-  		</div>
+.navbar ul{
+	display: flex;	
+}
 
-  		<div class="form-group">
-    		<label for="exampleInputEmail1">Email address</label>
-    		<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    		<span id="lblError" style="color: red"></span><br>
-    		<small style="color: black;">We'll never share your email with anyone else.</small>
-  		</div>
+.navbar ul li{
+	margin: 10px 10px 10px 10px;	
+}
 
-  		<div class="form-group">
-  			<label for="mobileNumber">Mobile Number</label>
-  			<input type="text" class="form-control" id="mobileNumber" maxlength="10" onkeypress='validate(event);'>
-  		</div>
+.navbar ul li a{
+	color: white;
+	font-weight: bold;
+	font-size: 2vw;
+}
 
-  		<div class="form-group">
-  			<button type="button" id="register-btn">Submit</button>
-  		</div>
-	</form>
-	</div>
+.navbar ul li a:hover{
+	color: #fb2274;
+	cursor: pointer;
+}
 
-	<div class="section" id="showListBlock" style="text-align:center;">
-		<table id="registrantList">
-			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Email</th>
-				<th>Contact</th>
-			</tr>
-		</table>
-		<h4 id = "noData">No Data Available</h4>
-	</div>
 
-    <!-- Optional JavaScript -->	
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script
-  		src="https://code.jquery.com/jquery-3.5.1.js">
-  </script>
+.form-group{
+	font-size: 1.5vw;
+}
 
-  <script type="text/javascript" src="js/index.js"></script>
-</body>
-</html>
+#registerBlock{
+	font-weight: bold;
+	position: relative;
+	border: 2px solid;
+	display: block;
+	justify-content: center;
+	margin: 2% 10% 3% 10%;
+	padding: 20px;
+	box-sizing: 10vw;
+	display: none;
+	background: white;
+}
+
+#registerBlock .form-group{
+	padding: 10px;
+	background: transparent;
+}
+
+#showListBlock{
+	display: none;
+}
+
+
+
+#showListBlock table{
+	justify-content: center;
+	margin-left:auto; 
+    margin-right:auto;
+    margin-top: 3%
+} 
+
+#registrantList {
+  border-collapse: collapse;
+  width: 80%;
+  font-size: 1.5vw;
+  justify-content: center;
+}
+
+#registrantList td, #registrantList th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#registrantList tr:nth-child(even)
+{
+	background-color: #f2f2f2;
+}
+
+#registrantList th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: teal;
+  color: white;
+}
+
+h2{
+	text-align: center;
+	font-size: 3vw;
+}
+
+#Singers{
+	font-size: 2vw;
+}
+.wrap1{
+	max-width: 600px;
+	border-radius: 20px;
+	margin: auto;
+	background:rgba(0,0,0,0.8);
+	box-sizing: border-box;
+	padding: 40px;
+	color: #fff;
+	margin-top: 50px;
+	display: none;
+}
+.wrap1 p{
+	text-align: center;
+	text-indent: 2px;
+	direction: rtl;
+	word-spacing: 2px;
+	font-size: 1.5vw;
+}
+
+#registerBlock button{
+ display:inline-block;
+ padding:0.3em 1.2em;
+ margin:0 0.3em 0.3em 0;
+ border-radius:2em;
+ box-sizing: border-box;
+ text-decoration:none;
+ font-family:'Roboto',sans-serif;
+ font-weight:300;
+ color:#FFFFFF;
+ background-color:#4eb5f1;
+ text-align:center;
+ transition: all 0.2s;
+}
+
+#registerBlock button:hover{
+ background-color:#4095c6;
+}
+
+@media all and (max-width:30em){
+ #registerBlock button{
+  display:block;
+  margin:0.2em auto;
+ }
+}
+
+@media screen and (max-width: 600px) {
+  .form-group {
+    width: 100%;
+    margin-top: 0;
+  }
+}
